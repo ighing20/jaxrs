@@ -24,13 +24,25 @@ public class ClienteRepository {
 		return instance;
 	}
 
-	public List<Cliente> all() {
+	public List<Cliente> getAll() {
 		return new ArrayList<>(map.values());
 	}
 
 	public void create(Cliente cliente) {
 		cliente.setId(map.size() + 1);
 		map.put(cliente.getId(), cliente);
+	}
+
+	public Cliente get(int id) {
+		return map.get(id);
+	}
+	
+	public Cliente update(Cliente cliente) {
+		return map.put(cliente.getId(), cliente); // upsert
+	}
+
+	public Cliente delete(int id) {
+		return map.remove(id);
 	}
 
 }
